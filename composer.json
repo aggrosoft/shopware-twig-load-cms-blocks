@@ -1,0 +1,18 @@
+{
+  "name": "aggrosoft/twig-shopware-load-cms-blocks",
+  "description": "Load CMS Blocks in template",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Aggrosoft\\LoadCmsBlocks\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Aggrosoft\\LoadCmsBlocks\\LoadCmsBlocks",
+    "label": {
+      "de-DE": "Load CMS Blocks",
+      "en-GB": "Load CMS Blocks"
+    }
+  }
+}

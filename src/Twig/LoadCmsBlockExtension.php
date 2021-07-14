@@ -4,7 +4,7 @@ namespace Aggrosoft\LoadCmsBlocks\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoader;
+use Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoaderInterface;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
@@ -19,7 +19,7 @@ class LoadCmsBlockExtension extends AbstractExtension
     private $twig;
 
     /**
-     * @var SalesChannelCmsPageLoader
+     * @var SalesChannelCmsPageLoaderInterface
      */
     private $cmsPageLoader;
 
@@ -28,7 +28,7 @@ class LoadCmsBlockExtension extends AbstractExtension
      */
     private $requestStack;
 
-    public function __construct(Environment $twig, SalesChannelCmsPageLoader $cmsPageLoader, RequestStack $requestStack)
+    public function __construct(Environment $twig, SalesChannelCmsPageLoaderInterface $cmsPageLoader, RequestStack $requestStack)
     {
         $this->twig = $twig;
         $this->cmsPageLoader = $cmsPageLoader;

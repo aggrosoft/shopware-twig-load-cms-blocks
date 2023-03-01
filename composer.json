@@ -8,6 +8,9 @@
       "Aggrosoft\\LoadCmsBlocks\\": "src/"
     }
   },
+  "require": {
+    "shopware/core": "~6.4.11"
+  },
   "extra": {
     "shopware-plugin-class": "Aggrosoft\\LoadCmsBlocks\\LoadCmsBlocks",
     "label": {

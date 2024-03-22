@@ -3,7 +3,7 @@
   "description": "Load CMS Blocks in template",
   "type": "shopware-platform-plugin",
   "license": "MIT",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "autoload": {
     "psr-4": {
       "Aggrosoft\\LoadCmsBlocks\\": "src/"

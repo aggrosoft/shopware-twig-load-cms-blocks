@@ -9,6 +9,7 @@
             <argument type="service" id="twig"/>
             <argument type="service" id="Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoader"/>
             <argument type="service" id="request_stack"/>
+            <argument type="service" id="kernel"/>
             <tag name="twig.extension"/>
         </service>
     </services>

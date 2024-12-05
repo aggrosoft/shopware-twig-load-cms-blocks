@@ -2,6 +2,7 @@
 
 namespace Aggrosoft\LoadCmsBlocks\Twig;
 
+use Shopware\Core\Framework\Adapter\Twig\TemplateFinder;
 use Shopware\Storefront\Controller\CmsController;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -17,9 +18,9 @@ class LoadCmsBlockExtension extends AbstractExtension
 {
     public function __construct(
         private readonly Environment $twig,
+        private readonly TemplateFinder $templateFinder,
         private readonly SalesChannelCmsPageLoaderInterface $cmsPageLoader,
-        private readonly RequestStack $requestStack,
-        private readonly HttpKernelInterface $kernel,
+        private readonly RequestStack $requestStack
     )
     {
     }
@@ -27,22 +28,15 @@ class LoadCmsBlockExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('cms', [$this, 'renderCms']),
+            new TwigFunction('cms', [$this, 'renderCms'], ['needs_context' => true]),
         ];
     }
 
-    public function renderCms(string $id, SalesChannelContext $context)
+    public function renderCms(array $context, string $id, SalesChannelContext $salesChannelContext)
     {
-        if ($this->requestStack->getParentRequest()){
-            // infinite loop protection
-            return '';
-        }
-
-        $request = $this->requestStack->getCurrentRequest();
-        $request->attributes->set('_route', 'frontend.cms.page');
-        $request->attributes->set('_controller', 'Shopware\Storefront\Controller\CmsController::page');
-        $request->attributes->set('id', $id);
-        $response = $this->kernel->handle($request, HttpKernelInterface::SUB_REQUEST);
-        return $response->getContent();
+        $cmsPage = $this->cmsPageLoader->load($this->requestStack->getCurrentRequest(), new Criteria([$id]), $salesChannelContext)->first();
+        $view = $this->templateFinder->find('@Storefront/storefront/page/content/detail.html.twig');
+        $result = $this->twig->render($view, array_merge($context, ['cmsPage' => $cmsPage]));
+        return $result;
     }
 }

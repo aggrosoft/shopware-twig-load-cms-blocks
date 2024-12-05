@@ -7,6 +7,7 @@
     <services>
         <service id="Aggrosoft\LoadCmsBlocks\Twig\LoadCmsBlockExtension">
             <argument type="service" id="twig"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Twig\TemplateFinder"/>
             <argument type="service" id="Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoader"/>
             <argument type="service" id="request_stack"/>
             <argument type="service" id="kernel"/>

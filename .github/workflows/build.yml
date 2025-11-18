@@ -6,7 +6,7 @@ jobs:
     uses: FriendsOfShopware/actions/.github/workflows/github.yml@main
     with:
       extensionName: 'LoadCmsBlocks'
-      shopwareVersion: '6.6.0'
-      cliVersion: '0.4.29'
+      shopwareVersion: '6.7.0'
+      cliVersion: 'latest'
     secrets:
       ghToken: ${{ secrets.GH_TOKEN }}
